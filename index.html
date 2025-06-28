@@ -452,22 +452,27 @@
             updateUI();
         }
 
-        function incrementPlayerStat(playerId) {
-            const playerIndex = players.findIndex(p => p.id === playerId);
-            if (playerIndex !== -1) {
-                if (players[playerIndex].locked) {
-                    showMessageBox('Locked Player', 'This player is locked and cannot be edited or have stats incremented.', 'alert');
-                    return;
-                }
-                players[playerIndex].stats[activeStat]++;
-                if (activeStat === 'points') {
-                    myTeamScore += 2;
-                }
-                saveGameData();
-                updateUI();
-            } else {
-                console.error(`Player with ID ${playerId} not found.`);
-            }
+function incrementPlayerStat(playerId) {
+    const playerIndex = players.findIndex(p => p.id === playerId);
+    if (playerIndex !== -1) {
+        if (players[playerIndex].locked) {
+            showMessageBox('Locked Player', 'This player is locked and cannot be edited or have stats incremented.', 'alert');
+            return;
+        }
+
+        // Check if the active stat is 'points'
+        if (activeStat === 'points') {
+            players[playerIndex].stats[activeStat] += 2; // Increment player's points by 2
+            myTeamScore += 2; // Increment team score by 2
+        } else {
+            players[playerIndex].stats[activeStat]++; // Increment other stats by 1
+        }
+
+        saveGameData();
+        updateUI();
+    } else {
+        console.error(`Player with ID ${playerId} not found.`);
+    }
         }
 
         function incrementRivalPoints() {
