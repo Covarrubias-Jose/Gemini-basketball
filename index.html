@@ -132,24 +132,16 @@
                 flex-grow: 1;
                 padding: 0.2rem;
             }
+            /* My Team Score (Number) */
             #my-team-score {
-                font-size: 2.2rem;
+                font-size: 2.2rem; /* Keep My Team score number large */
             }
-            #rival-points-btn {
-                padding: 0;
-                background: none;
-                color: inherit;
-                box-shadow: none;
-                font-size: 2.2rem;
-                font-weight: extrabold;
-                display: flex;
-                align-items: center;
-                justify-content: center;
-            }
-            #rival-points-btn span {
-                font-size: 2.2rem;
+            /* Rival Team Score (Number) */
+            #rival-points-btn, #rival-points-btn span {
+                font-size: 1.6rem; /* Rival score number, now smaller than My Team */
                 margin-left: 0.25rem;
                 line-height: 1.0;
+                font-weight: extrabold; /* Ensure bold for the number */
             }
             .scoreboard-vs {
                 font-size: 1.2rem;
@@ -157,8 +149,16 @@
                 font-weight: normal;
                 opacity: 0.8;
             }
-            .scoreboard-title { /* For 'My Team' / 'Rival Team' text */
-                font-size: 0.8rem; /* Adjusted from 0.6rem for better balance */
+            /* My Team Title */
+            #my-team-score-wrapper .scoreboard-title {
+                font-size: 1.0rem; /* Increased My Team title for prominence */
+                font-weight: normal;
+                opacity: 0.9;
+                margin-bottom: 0.1rem;
+            }
+            /* Rival Team Title */
+            #rival-team-score-wrapper .scoreboard-title {
+                font-size: 0.7rem; /* Decreased Rival Points title, smaller than My Team title */
                 font-weight: normal;
                 opacity: 0.9;
                 margin-bottom: 0.1rem;
