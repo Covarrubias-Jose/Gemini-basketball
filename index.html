@@ -125,6 +125,7 @@
                 box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
                 width: 100%;
             }
+            /* Common styles for team sections in scoreboard */
             #my-team-score-wrapper, #rival-team-score-wrapper {
                 display: flex;
                 flex-direction: column;
@@ -134,15 +135,28 @@
             }
             /* My Team Score (Number) */
             #my-team-score {
-                font-size: 2.2rem; /* Keep My Team score number large */
+                font-size: 2.0rem; /* Consistent score font size */
             }
-            /* Rival Team Score (Number) */
-            #rival-points-btn, #rival-points-btn span {
-                font-size: 1.6rem; /* Rival score number, now smaller than My Team */
-                margin-left: 0.25rem;
-                line-height: 1.0;
+            /* Rival Team Score (Number - inside the button) */
+            #rival-team-score { /* Target the span directly for font size */
+                font-size: 2.0rem; /* Consistent score font size */
+            }
+            /* Style for the new clickable rival score button */
+            #rival-score-button {
+                background: none;
+                border: none;
+                padding: 0.2rem 0.5rem;
+                cursor: pointer;
+                color: inherit;
+                transition: transform 0.1s ease-in-out, color 0.1s ease-in-out;
                 font-weight: extrabold; /* Ensure bold for the number */
+                line-height: 1.0;
             }
+            #rival-score-button:active {
+                transform: scale(0.95);
+                color: #ffe600;
+            }
+
             .scoreboard-vs {
                 font-size: 1.2rem;
                 margin: 0 0.5rem;
@@ -151,14 +165,14 @@
             }
             /* My Team Title */
             #my-team-score-wrapper .scoreboard-title {
-                font-size: 1.0rem; /* Increased My Team title for prominence */
+                font-size: 0.8rem; /* Consistent title font size */
                 font-weight: normal;
                 opacity: 0.9;
                 margin-bottom: 0.1rem;
             }
             /* Rival Team Title */
             #rival-team-score-wrapper .scoreboard-title {
-                font-size: 0.7rem; /* Decreased Rival Points title, smaller than My Team title */
+                font-size: 0.8rem; /* Consistent title font size */
                 font-weight: normal;
                 opacity: 0.9;
                 margin-bottom: 0.1rem;
@@ -229,14 +243,15 @@
 
         <!-- Scoreboard -->
         <div class="scoreboard-container bg-gradient-to-r from-blue-700 to-indigo-800 text-white shadow-lg mb-4">
-            <div id="my-team-score-wrapper">
+            <div id="my-team-score-wrapper" class="flex flex-col items-center flex-grow py-0.5">
                 <h2 class="scoreboard-title">My Team</h2>
                 <span id="my-team-score" class="font-extrabold text-yellow-300 drop-shadow-lg">0</span>
             </div>
             <div class="scoreboard-vs font-bold text-gray-300">vs</div>
-            <div id="rival-team-score-wrapper">
-                <button id="rival-points-btn" class="btn-score">
-                    <span class="scoreboard-title">Rival Points</span> <span id="rival-team-score">0</span>
+            <div id="rival-team-score-wrapper" class="flex flex-col items-center flex-grow py-0.5">
+                <h2 class="scoreboard-title">Rival Points</h2>
+                <button id="rival-score-button" class="text-white hover:text-yellow-200 active:scale-95 transition-transform">
+                    <span id="rival-team-score" class="font-extrabold">0</span>
                 </button>
             </div>
         </div>
@@ -638,7 +653,7 @@
         document.getElementById('rebounds-btn').addEventListener('click', () => changeStatMode('rebounds'));
         document.getElementById('assists-btn').addEventListener('click', () => changeStatMode('assists'));
         document.getElementById('points-btn').addEventListener('click', () => changeStatMode('points'));
-        document.getElementById('rival-points-btn').addEventListener('click', incrementRivalPoints);
+        document.getElementById('rival-score-button').addEventListener('click', incrementRivalPoints); /* Updated ID here */
 
         document.getElementById('reset-game-btn').addEventListener('click', () => {
             showMessageBox(
