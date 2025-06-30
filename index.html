@@ -7,15 +7,15 @@
         <script src="https://cdn.tailwindcss.com"></script>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 
-    <link rel="manifest" href="manifest.json">
-    <meta name="theme-color" content="#007bff">
-    <link rel="icon" href="/icon-192.png" sizes="192x192" type="image/png">
-    <link rel="apple-touch-icon" href="/icon-512.png">
+        <link rel="manifest" href="/manifest.json">
+    <link rel="icon" href="/icons/icon-192x192.png" sizes="192x192" type="image/png">
+    <link rel="apple-touch-icon" href="/icons/icon-180x180.png">
+    <meta name="theme-color" content="#1a202c"/>
 
     <style>
         body {
             font-family: 'Inter', sans-serif;
-            background-image: url('court.jpg'); /* This is already here! */
+            background-image: url('court.jpg');
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
@@ -30,6 +30,7 @@
         .container {
             max-width: 600px;
             width: 100%;
+            background-color: #ffffff;
             border-radius: 1.25rem;
             box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
             padding: 0.75rem;
@@ -217,7 +218,7 @@
     </style>
 </head>
 <body class="bg-gradient-to-br from-indigo-50 to-purple-50">
-        <div class="container mx-auto p-6 bg-white/70 rounded-3xl shadow-xl mt-8">
+    <div class="container mx-auto p-6 bg-white rounded-3xl shadow-xl mt-8">
         <h1 class="text-3xl font-extrabold text-center text-gray-900 mb-6">Basketball Game Tracker</h1>
         <p class="text-center text-gray-600 mb-6 text-sm">Data stored locally in your browser.</p>
 
@@ -293,7 +294,7 @@
                 <button id="message-box-cancel-btn" class="px-4 py-1.5 rounded-md bg-gray-300 text-gray-800 hover:bg-gray-400 font-semibold hidden text-sm">Cancel</button>
                 <button id="message-box-ok-btn" class="px-4 py-1.5 rounded-md bg-indigo-600 text-white hover:bg-indigo-700 font-semibold hidden text-sm">OK</button>
             </div>
-            </div>
+        </div>
     </div>
 
 
@@ -446,15 +447,10 @@
                     showMessageBox('Locked Player', 'This player is locked and cannot be edited or have stats incremented.', 'alert');
                     return;
                 }
-                
-                // Adjusted logic to increment player points by 2
+                players[playerIndex].stats[activeStat]++;
                 if (activeStat === 'points') {
-                    players[playerIndex].stats[activeStat] += 2;
                     myTeamScore += 2;
-                } else {
-                    players[playerIndex].stats[activeStat]++;
                 }
-                
                 saveGameData();
                 updateUI();
             } else {
