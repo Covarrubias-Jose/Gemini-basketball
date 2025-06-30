@@ -8,8 +8,8 @@ const urlsToCache = [
     './court.jpg', // Cache your background image
     'https://cdn.tailwindcss.com',
     // Icon paths referenced in manifest.json - ensure these match your actual paths
-    './icons/icon-192x192.png',
-    './icons/icon-512x512.png',
+    './icons/icon-192.png',
+    './icons/icon-512.png',
     'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css', // Font Awesome CSS
     // If you add other external resources (like more JS libraries), add them here:
     // 'https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js',
