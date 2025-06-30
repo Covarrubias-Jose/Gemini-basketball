@@ -17,207 +17,208 @@
 
 <style>
 body {
-font-family: 'Inter', sans-serif;
-background-image: url('court.jpg'); /* This assumes court.jpg is in the same directory */
-background-size: cover;
-background-position: center;
-background-repeat: no-repeat;
-background-attachment: fixed; /* Ensures background stays fixed during scroll */
-background-color: #f0f2f5; /* Fallback color */
-display: flex;
-justify-content: center;
-align-items: flex-start; /* Align to top */
-min-height: 100vh;
-padding: 0.25rem;
+    font-family: 'Inter', sans-serif;
+    background-image: url('court.jpg'); /* This assumes court.jpg is in the same directory */
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed; /* Ensures background stays fixed during scroll */
+    background-color: #f0f2f5; /* Fallback color */
+    display: flex;
+    justify-content: center;
+    align-items: flex-start; /* Align to top */
+    min-height: 100vh;
+    padding: 0.25rem;
 }
 .container {
-max-width: 600px;
-width: 100%;
-           
-            background-color: rgba(255, 255, 255, 0.5);
-border-radius: 1.25rem;
-box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
-padding: 0.75rem;
+    max-width: 600px;
+    width: 100%;
+    
+    /* MODIFIED: Adjusted the alpha (transparency) from 0.7 to 0.9 for better visibility */
+    background-color: rgba(255, 255, 255, 0.9); 
+    border-radius: 1.25rem;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+    padding: 0.75rem;
 }
 .btn-stat, .btn-score, .btn-action {
-padding: 0.6rem 0.4rem;
-font-weight: bold;
-border-radius: 0.6rem;
-transition: transform 0.1s ease-in-out, background-color 0.1s ease-in-out;
-box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-display: flex;
-align-items: center;
-justify-content: center;
-flex-direction: column;
-text-align: center;
-line-height: 1.1;
-user-select: none;
--webkit-tap-highlight-color: transparent;
+    padding: 0.6rem 0.4rem;
+    font-weight: bold;
+    border-radius: 0.6rem;
+    transition: transform 0.1s ease-in-out, background-color 0.1s ease-in-out;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    text-align: center;
+    line-height: 1.1;
+    user-select: none;
+    -webkit-tap-highlight-color: transparent;
 }
 .btn-stat:active, .btn-score:active, .btn-action:active {
-transform: scale(0.98);
+    transform: scale(0.98);
 }
 .stat-active {
-background-color: #4f46e5;
-color: white;
-box-shadow: 0 3px 6px rgba(79, 70, 229, 0.3);
+    background-color: #4f46e5;
+    color: white;
+    box-shadow: 0 3px 6px rgba(79, 70, 229, 0.3);
 }
 .stat-inactive {
-background-color: #e0e7ff;
-color: #4f46e5;
+    background-color: #e0e7ff;
+    color: #4f46e5;
 }
 
 /* Player Button Styling */
 .btn-player {
-position: relative;
-width: 100%;
-background-color: #e0e7ff;
-color: #4f46e5;
-padding: 0.7rem 0.5rem;
-font-weight: bold;
-border-radius: 0.6rem;
-box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-transition: transform 0.1s ease-in-out, background-color 0.1s ease-in-out, border 0.1s ease-in-out, box-shadow 0.1s ease-in-out;
-display: flex;
-flex-direction: column;
-align-items: center;
-justify-content: center;
-text-align: center;
-line-height: 1.1;
-user-select: none;
--webkit-tap-highlight-color: transparent;
-cursor: pointer;
-border: 2px solid transparent;
+    position: relative;
+    width: 100%;
+    background-color: #e0e7ff;
+    color: #4f46e5;
+    padding: 0.7rem 0.5rem;
+    font-weight: bold;
+    border-radius: 0.6rem;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: transform 0.1s ease-in-out, background-color 0.1s ease-in-out, border 0.1s ease-in-out, box-shadow 0.1s ease-in-out;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    line-height: 1.1;
+    user-select: none;
+    -webkit-tap-highlight-color: transparent;
+    cursor: pointer;
+    border: 2px solid transparent;
 }
 .btn-player:hover {
-background-color: #c7d2fe;
+    background-color: #c7d2fe;
 }
 .player-active {
-background-color: #bfdbfe;
-border: 2px solid #2563eb;
-box-shadow: 0 4px 8px rgba(37, 99, 235, 0.3);
+    background-color: #bfdbfe;
+    border: 2px solid #2563eb;
+    box-shadow: 0 4px 8px rgba(37, 99, 235, 0.3);
 }
 .player-button-locked {
-background-color: #d1d5db;
-cursor: not-allowed;
+    background-color: #d1d5db;
+    cursor: not-allowed;
 }
 .player-button-locked .player-name, .player-button-locked .player-stats span {
-color: #6b7280;
+    color: #6b7280;
 }
 
 /* Responsive adjustments for smaller screens */
 @media (max-width: 480px) {
-.btn-stat, .btn-action {
-font-size: 0.7rem;
-padding: 0.6rem 0.4rem;
-}
-.btn-stat span {
-font-size: 1.5rem;
-}
-.scoreboard-container {
-display: flex;
-flex-direction: row;
-align-items: center;
-justify-content: space-around;
-background-color: #3b82f6;
-color: white;
-padding: 0.6rem;
-border-radius: 0.6rem;
-box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-width: 100%;
-}
-/* Common styles for team sections in scoreboard */
-#my-team-score-wrapper, #rival-team-score-wrapper {
-display: flex;
-flex-direction: column;
-align-items: center;
-flex-grow: 1;
-padding: 0.2rem;
-}
-/* My Team Score (Number) */
-#my-team-score {
-font-size: 2.0rem; /* Consistent score font size */
-}
-/* Rival Team Score (Number - inside the button) */
-#rival-team-score { /* Target the span directly for font size */
-font-size: 2.0rem; /* Consistent score font size */
-}
-/* Style for the new clickable rival score button */
-#rival-score-button {
-background: none;
-border: none;
-padding: 0.2rem 0.5rem;
-cursor: pointer;
-color: inherit;
-transition: transform 0.1s ease-in-out, color 0.1s ease-in-out;
-font-weight: extrabold; /* Ensure bold for the number */
-line-height: 1.0;
-}
-#rival-score-button:active {
-transform: scale(0.95);
-color: #ffe600;
-}
-
-.scoreboard-vs {
-font-size: 1.2rem;
-margin: 0 0.5rem;
-font-weight: normal;
-opacity: 0.8;
-}
-/* My Team Title */
-#my-team-score-wrapper .scoreboard-title {
-font-size: 0.8rem; /* Consistent title font size */
-font-weight: normal;
-opacity: 0.9;
-margin-bottom: 0.1rem;
-}
-/* Rival Team Title */
-#rival-team-score-wrapper .scoreboard-title {
-font-size: 0.8rem; /* Consistent title font size */
-font-weight: normal;
-opacity: 0.9;
-margin-bottom: 0.1rem;
-}
-.player-name {
-font-size: 0.7rem;
-}
-.player-stats span {
-font-size: 0.65rem;
-}
-.player-stats {
-margin-top: 0.05rem;
-}
-.text-3xl { font-size: 1.5rem; }
-.text-sm { font-size: 0.65rem; }
-.text-lg { font-size: 0.8rem; }
+    .btn-stat, .btn-action {
+        font-size: 0.7rem;
+        padding: 0.6rem 0.4rem;
+    }
+    .btn-stat span {
+        font-size: 1.5rem;
+    }
+    .scoreboard-container {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-around;
+        background-color: #3b82f6;
+        color: white;
+        padding: 0.6rem;
+        border-radius: 0.6rem;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        width: 100%;
+    }
+    /* Common styles for team sections in scoreboard */
+    #my-team-score-wrapper, #rival-team-score-wrapper {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        flex-grow: 1;
+        padding: 0.2rem;
+    }
+    /* My Team Score (Number) */
+    #my-team-score {
+        font-size: 2.0rem; /* Consistent score font size */
+    }
+    /* Rival Team Score (Number - inside the button) */
+    #rival-team-score { /* Target the span directly for font size */
+        font-size: 2.0rem; /* Consistent score font size */
+    }
+    /* Style for the new clickable rival score button */
+    #rival-score-button {
+        background: none;
+        border: none;
+        padding: 0.2rem 0.5rem;
+        cursor: pointer;
+        color: inherit;
+        transition: transform 0.1s ease-in-out, color 0.1s ease-in-out;
+        font-weight: extrabold; /* Ensure bold for the number */
+        line-height: 1.0;
+    }
+    #rival-score-button:active {
+        transform: scale(0.95);
+        color: #ffe600;
+    }
+    
+    .scoreboard-vs {
+        font-size: 1.2rem;
+        margin: 0 0.5rem;
+        font-weight: normal;
+        opacity: 0.8;
+    }
+    /* My Team Title */
+    #my-team-score-wrapper .scoreboard-title {
+        font-size: 0.8rem; /* Consistent title font size */
+        font-weight: normal;
+        opacity: 0.9;
+        margin-bottom: 0.1rem;
+    }
+    /* Rival Team Title */
+    #rival-team-score-wrapper .scoreboard-title {
+        font-size: 0.8rem; /* Consistent title font size */
+        font-weight: normal;
+        opacity: 0.9;
+        margin-bottom: 0.1rem;
+    }
+    .player-name {
+        font-size: 0.7rem;
+    }
+    .player-stats span {
+        font-size: 0.65rem;
+    }
+    .player-stats {
+        margin-top: 0.05rem;
+    }
+    .text-3xl { font-size: 1.5rem; }
+    .text-sm { font-size: 0.65rem; }
+    .text-lg { font-size: 0.8rem; }
 }
 
 /* Modal styling */
 .modal-overlay {
-background-color: rgba(0, 0, 0, 0.6);
+    background-color: rgba(0, 0, 0, 0.6);
 }
 .modal-content {
-background-color: white;
-border-radius: 0.75rem;
-padding: 1rem;
-box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
-width: 90%;
-max-width: 350px;
+    background-color: white;
+    border-radius: 0.75rem;
+    padding: 1rem;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+    width: 90%;
+    max-width: 350px;
 }
 /* Report Modal Specifics */
 #report-output {
-white-space: pre-wrap;
-word-wrap: break-word;
-height: 200px;
-overflow-y: auto;
-border: 1px solid #e2e8f0;
-background-color: #f8fafc;
-padding: 0.75rem;
-border-radius: 0.5rem;
-font-size: 0.875rem;
-line-height: 1.4;
-color: #334155;
-resize: vertical;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    height: 200px;
+    overflow-y: auto;
+    border: 1px solid #e2e8f0;
+    background-color: #f8fafc;
+    padding: 0.75rem;
+    border-radius: 0.5rem;
+    font-size: 0.875rem;
+    line-height: 1.4;
+    color: #334155;
+    resize: vertical;
 }
 </style>
 </head>
